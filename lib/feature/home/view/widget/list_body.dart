@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomListView extends StatelessWidget {
-  const CustomListView({super.key});
+  const CustomListView({super.key, required this.imgUrl});
+
+  final String imgUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -10,8 +12,8 @@ class CustomListView extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          image: const DecorationImage(
-            image: AssetImage("assets/images/test_image.png"),
+          image: DecorationImage(
+            image: NetworkImage(imgUrl),
             fit: BoxFit.fill,
           ),
         ),
