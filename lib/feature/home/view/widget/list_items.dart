@@ -1,10 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/utils/style.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_application_1/feature/home/models/book_models/book_models.dart';
+import 'package:flutter_application_1/feature/home/view/widget/book_rating.dart';
 import 'package:go_router/go_router.dart';
 
 class ListItems extends StatelessWidget {
-  const ListItems({super.key});
+  const ListItems({super.key, required this.bookModels});
+
+  final BookModels bookModels;
 
   @override
   Widget build(BuildContext context) {
@@ -16,15 +20,14 @@ class ListItems extends StatelessWidget {
         height: 125,
         child: Row(
           children: [
-            AspectRatio(
-              aspectRatio: 2.5 / 4,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  image: const DecorationImage(
-                    image: AssetImage("assets/images/test_image.png"),
-                    fit: BoxFit.fill,
-                  ),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: AspectRatio(
+                aspectRatio: 2.5 / 4,
+                child: CachedNetworkImage(
+                  imageUrl: bookModels.volumeInfo.imageLinks?.thumbnail ??
+                      "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.boldstrokesbooks.com%2Fbooks%2Fgay-non-fiction-14-c&psig=AOvVaw06Zftxc3RAArzp5JprYF3-&ust=1694851473870000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCPD6r_KTrIEDFQAAAAAdAAAAABAE",
+                  fit: BoxFit.fill,
                 ),
               ),
             ),
@@ -37,8 +40,8 @@ class ListItems extends StatelessWidget {
                   children: [
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.5,
-                      child: const Text(
-                        "Harry Potter and the Goblet of Fire",
+                      child: Text(
+                        bookModels.volumeInfo.title!,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: Style.textStyle20,
@@ -46,31 +49,28 @@ class ListItems extends StatelessWidget {
                     ),
                     const SizedBox(height: 3),
                     Text(
-                      "J.K.Rowling",
+                      // ignore: dead_null_aware_expression
+                      bookModels.volumeInfo.authors?[0] ?? "??? ",
+
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: Style.textStyle14.copyWith(color: Colors.white30),
                     ),
-                    const SizedBox(height: 3),
+                    const SizedBox(height: 6),
                     Row(
                       children: [
                         Text(
-                          "19.99 \$",
+                          "Free",
                           style: Style.textStyle20
                               .copyWith(fontWeight: FontWeight.bold),
                         ),
                         const Spacer(),
-                        Row(
-                          children: [
-                            const Icon(FontAwesomeIcons.solidStar,
-                                color: Color(0xFFffDD4F), size: 13.3),
-                            const SizedBox(width: 6.3),
-                            const Text("4.8", style: Style.textStyle16),
-                            const SizedBox(width: 6.3),
-                            Text(
-                              "(2390)",
-                              style: Style.textStyle14
-                                  .copyWith(color: Colors.white30),
-                            ),
-                          ],
+                        BookRating(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          // ignore: dead_null_aware_expression
+                          rating: bookModels.volumeInfo.averageRating ?? 0,
+                          // ignore: dead_null_aware_expression
+                          count: bookModels.volumeInfo.ratingsCount ?? 0,
                         ),
                       ],
                     )

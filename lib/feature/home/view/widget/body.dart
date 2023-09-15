@@ -2,9 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/utils/style.dart';
-import 'package:flutter_application_1/feature/home/view/widget/best_seller.dart';
 import 'package:flutter_application_1/feature/home/view/widget/custom_appBar.dart';
 import 'package:flutter_application_1/feature/home/view/widget/featured_books.dart';
+
+import 'best_seller.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({super.key});

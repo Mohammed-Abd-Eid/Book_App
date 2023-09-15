@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/feature/home/view/widget/list_items.dart';
 
 class SearchResultList extends StatelessWidget {
   const SearchResultList({super.key});
@@ -11,7 +10,8 @@ class SearchResultList extends StatelessWidget {
       itemCount: 10,
       itemBuilder: (context, index) => const Padding(
         padding: EdgeInsets.symmetric(vertical: 10),
-        child: ListItems(),
+        child: Text("data"),
+        //ListItems(imgUrl: "assets/images/Logo.png"),
       ),
     );
   }
