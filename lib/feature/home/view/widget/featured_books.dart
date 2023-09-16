@@ -5,6 +5,7 @@ import 'package:flutter_application_1/feature/home/view/widget/failure_widght.da
 import 'package:flutter_application_1/feature/home/view/widget/list_body.dart';
 import 'package:flutter_application_1/feature/home/view/widget/loading.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class FeatureBooksList extends StatelessWidget {
   const FeatureBooksList({super.key});
@@ -25,12 +26,20 @@ class FeatureBooksList extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: CustomListView(
-                    // This Line Is Null Error
+                  child: GestureDetector(
+                    onTap: () {
+                      GoRouter.of(context).push(
+                        "/detailsBook",
+                        extra: state.books[index],
+                      );
+                    },
+                    child: CustomListView(
+                      // This Line Is Null Error
 
-                    imgUrl: state
-                            .books[index].volumeInfo.imageLinks?.thumbnail ??
-                        "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.boldstrokesbooks.com%2Fbooks%2Fgay-non-fiction-14-c&psig=AOvVaw06Zftxc3RAArzp5JprYF3-&ust=1694851473870000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCPD6r_KTrIEDFQAAAAAdAAAAABAE",
+                      imgUrl: state
+                              .books[index].volumeInfo.imageLinks?.thumbnail ??
+                          "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.boldstrokesbooks.com%2Fbooks%2Fgay-non-fiction-14-c&psig=AOvVaw06Zftxc3RAArzp5JprYF3-&ust=1694851473870000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCPD6r_KTrIEDFQAAAAAdAAAAABAE",
+                    ),
                   ),
                 );
               },

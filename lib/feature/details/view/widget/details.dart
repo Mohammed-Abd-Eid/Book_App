@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/feature/home/models/book_models/book_models.dart';
 
 class Details extends StatelessWidget {
-  const Details({super.key});
+  const Details({super.key, required this.books});
+
+  final BookModels books;
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +19,9 @@ class Details extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.red,
                 borderRadius: BorderRadius.circular(16),
-                image: const DecorationImage(
-                  image: AssetImage("assets/images/test_image.png"),
+                image: DecorationImage(
+                  image: NetworkImage(
+                      books.volumeInfo.imageLinks?.thumbnail ?? ""),
                   fit: BoxFit.fill,
                 ),
               ),

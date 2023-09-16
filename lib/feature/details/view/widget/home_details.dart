@@ -5,9 +5,12 @@ import 'package:flutter_application_1/feature/details/view/widget/custom_button.
 import 'package:flutter_application_1/feature/details/view/widget/details.dart';
 import 'package:flutter_application_1/feature/details/view/widget/smiler_list.dart';
 import 'package:flutter_application_1/feature/details/view/widget/title_details.dart';
+import 'package:flutter_application_1/feature/home/models/book_models/book_models.dart';
 
 class HomeDetails extends StatelessWidget {
-  const HomeDetails({super.key});
+  const HomeDetails({super.key, required this.books});
+
+  final BookModels books;
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +25,11 @@ class HomeDetails extends StatelessWidget {
               const CustomAppBar(),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: width * 0.27),
-                child: const Details(),
+                child: Details(books: books),
               ),
-              const TitleDetails(),
+              TitleDetails(books: books),
               const SizedBox(height: 35),
-              const CustomButtom(),
+              CustomButtom(books: books),
               const Expanded(child: SizedBox(height: 50)),
               Text(
                 "You can also like",

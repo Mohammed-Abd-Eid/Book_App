@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/const.dart';
+import 'package:flutter_application_1/core/utils/const.dart';
 
 abstract class Style {
   static const textStyle14 = TextStyle(

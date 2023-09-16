@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/const.dart';
+import 'package:flutter_application_1/core/utils/const.dart';
 import 'package:flutter_application_1/core/utils/router.dart';
 import 'package:flutter_application_1/core/utils/service_locator.dart';
 import 'package:flutter_application_1/feature/home/maneger/feature/featured_books_cubit.dart';
