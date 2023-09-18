@@ -12,6 +12,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   setupGetIt();
+
   runApp(const MyApp());
 }
 
@@ -37,9 +38,10 @@ class MyApp extends StatelessWidget {
         routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,
         theme: ThemeData.dark().copyWith(
-            scaffoldBackgroundColor: primaryColor,
-            textTheme:
-                GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme)),
+          scaffoldBackgroundColor: primaryColor,
+          textTheme:
+              GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme),
+        ),
       ),
     );
   }

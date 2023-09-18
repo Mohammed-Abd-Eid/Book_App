@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_application_1/core/error/failures.dart';
@@ -70,6 +72,28 @@ class HomeRepoImpl implements HomeRepo {
         return left(ServerFailure.fromDioException(e));
       }
       return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<BookModels>>> searchBook(
+      {required String searchText}) async {
+    try {
+      var data = await apiService.get(
+        endPoint: 'volumes?Filtering=free-ebooks&q=$searchText',
+      );
+      List<BookModels> books = [];
+      for (var item in data['items']) {
+        books.add(BookModels.fromJson(item));
+      }
+      return Right(books);
+    } catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioException(e));
+      } else {
+        print(e.toString());
+        return Left(ServerFailure(e.toString()));
+      }
     }
   }
 }
